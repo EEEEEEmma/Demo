@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>相片展示</title>
+</head>
+<style>
+    body,ul,li,div h1,h2,h3,h4,h5,h6{
+        margin:0 0 ;
+        padding:0 0 ;
+        list-style: none;
+    }
+    .dibu{
+        width:400px;
+        height:385px;
+        border:2px solid rgba(0, 53, 72, 0.98);
+        margin: 0 auto;
+        padding:10px 10px;
+        background: #e1e1e1;
+        border-radius: 10%;
+    }
+    .datu img{
+        width:250px;
+        height:250px;
+        float: right;
+        margin-right: 10px;
+    }
+    li{
+        width: 130px;
+        height: 130px;
+        border: #2e6da4;
+        float: right;
+    }
+    li img{
+        width:120px;
+        height: 120px;
+        border-radius: 2%;
+    }
+</style>
+<body>
+<div class="dibu">
+    <div class="datu"><img id="1" src="image/zhuyilong/1.jpg"> </div>
+    <ul id="2">
+        <li><a><img src="image/zhuyilong/1.jpg" alt="朱一龙好帅"></a></li>
+        <li><a><img src="image/zhuyilong/2.jpg" alt="朱一龙好帅"></a></li>
+        <li><a><img src="image/zhuyilong/3.jpg" alt="朱一龙好帅"></a></li>
+        <li><a><img src="image/zhuyilong/4.jpg" alt="朱一龙好帅"></a></li>
+        <li><a><img src="image/zhuyilong/5.jpg" alt="朱一龙好帅"></a></li>
+    </ul>
+</div>
+<script>
+    var oImg=document.getElementById("2").getElementsByTagName("img");
+    var oDtu=document.getElementById("1");
+    for(var i in oImg){
+        oImg[i].index=i;
+        oImg[i].onmouseover=function () {
+            oDtu.src=oImg[this.index].src;
+        }
+    }
+</script>
+</body>
+</html>

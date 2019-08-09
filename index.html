@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>当当网图书_小说传记_青春文学_成功励志_投资理财_各品类图书畅销榜</title>
+    <meta name="description" content="当当网图书频道-全球最大中文网上书店,专业提供小说传记,青春文学,成功励志,投资理财等各品类图书畅销榜最新报价、促销、评论信息,引领最新网上购书体验!">
+    <meta name="keywords" content="小说传记,青春文学,童书,绘本,成功励志,投资理财,东野圭吾,考研英语,人类简史,当当网图书,网上购书">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        body, ul, li, ol, p, dl, dd, h1, h2, h3, h4, h5, h6, img, iframe, form, div {
+            margin: 0;
+            padding: 0;
+            list-style-type: none;
+            border: 0;
+        }
+        #head {
+            font: 12px 'Hiragino Sans GB',"simsun","Arial";
+            color: #646464;
+            min-width: 1200px;
+            background-color: #fff;
+        }
+        #head a{
+            color:#646464;
+            text-decoration: none;
+        }
+        #head .top {
+            width: 100%;
+            background-color: #f9f9f9;
+            border-bottom: 1px solid #f2f2f2;
+            height: 34px;
+            line-height: 34px;
+            position: relative;
+            z-index: 10010;
+        }
+        #head .sentTo_area {
+            float: left;
+            position: relative;
+            padding-top: 2px;
+            margin-right: -1px;
+            _margin-right: -10px;
+            z-index: 100;
+            font-family: arial,simsun;
+        }
+        #head .sentTo_area>a{
+            display: block;
+            _display: inline-block;
+            position: relative;
+            line-height: 22px;
+            height: 22px;
+            padding: 4px 22px 0 9px;
+        }
+
+        .area_list{
+            position: absolute;
+            top: 27px;
+            left: 0px;
+            border: 1px solid #e6e6e6;
+            background-color: #fff;
+            padding: 10px 0 10px 10px;
+            width: 298px;
+        }
+        .btn-link{
+            line-height: 26px;
+            height: 26px;
+            color:#646464;
+            font-size:12px;
+        }
+        .btn-link:hover{
+            color:#985f0d;
+            text-decoration: none;
+        }
+    </style>
+
+
+</head>
+<body>
+<div id="head">
+    <div class="top" id="top">
+        <div class="container">
+            <div class="sentTo_area">
+                <div class="dropdown" onmouseover="show_areaList()" onmouseout="hidden_areaList()">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">送至：
+                        <span id="current_area">北京</span><span class="caret"></span> </a>
+                    <div class="btn-toolbar dropdown-menu area_list" id="area_List">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-link" onclick="changeArea()">北京</button>
+                            <button type="button" class="btn btn-link" onclick="changeArea()">天津</button>
+                            <button type="button" class="btn btn-link" onclick="changeArea()">河北</button>
+                            <button type="button" class="btn btn-link" onclick="changeArea()">山西</button>
+                            <button type="button" class="btn btn-link" onclick="changeArea()">内蒙古</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="login_reg"></div>
+            <div class="top_nav"></div>
+        </div>
+    </div>
+
+    <div class="logo_search">
+
+    </div>
+    <div class="nav_s01">
+
+    </div>
+
+</div>
+<div id="content">
+
+</div>
+<div id="footer">
+
+</div>
+<!--<nav class="nav navbar-default">
+   <div class="container">
+        <div class="sentTo_area dropdown">
+            <p href="#" class="dropdown-toggle" data-toggle="dropdown">
+                送至:<span id="current_area">北京</span> <span class="caret"></span>
+            </p>
+        </div>
+    </div>
+
+</nav>-->
+<script>
+    var b;
+    function changeArea() {
+        var a=document.getElementById('current_area');
+        a.innerHTML=b;
+    }
+    function show_areaList() {
+        document.getElementById('area_List').style.display='block';
+
+    }
+    function hidden_areaList(){
+        document.getElementById('area_List').style.display='none';
+    }
+</script>
+
+</body>
+</html>

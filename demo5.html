@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算器</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <style>
+/*        .da{
+            width:340px;
+            border:2px solid #e5e5e5;
+            margin:40px auto;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+
+        }
+        input[type="text"]{
+            width:310px;
+            height:40px;
+            margin:10px;
+            font-size: 20px;
+        }
+        input[type="button"]{
+            width:60px;
+            height:50px;
+            margin:10px ;
+            font-size:40px;
+            background-color: #dcfbed;
+        }*/
+        body{
+            background: #9efeed;
+        }
+        .bottom{
+            width:250px;
+            margin:100px auto;
+            border:1px solid #a6e1ec;
+            box-shadow: 5px 5px 5px 5px #1b6d85;
+            border-radius: 25px;
+            position: relative;
+        }
+        p{
+            height:10px;
+            text-align: center;
+            font: 20px Arial,Calibri;
+            color: #8c6144;
+        }
+        input[type=text]{
+            width:160px;
+            height:30px;
+            margin-left:10px;
+            box-shadow: 1px 2px 2px 2px #8c8c8c;
+        }
+        input[type=button]{
+            width:45px;
+            height:40px;
+            border:2px solid #a6e1ec;
+            background: white;
+            color:#8a6d3b;
+            border-radius: 15px;
+            margin:9px 5px;
+            font:20px Arial;
+            outline: none;
+        }
+        input[type=button]:hover{
+            background: #5bc0de;
+        }
+
+    </style>
+</head>
+<body>
+<div class="bottom" >
+    <p>My 计算器 (●'◡'●)</p>
+    <br/>
+    <input type="text" id="inp">
+    <input style="border-radius: 40% " type="button" value="👈" id="chexiao" onclick="chexiao()"><br/>
+    <input style="width: 165px" type="button" value="C" onclick="num(this)">
+    <input type="button" value="/" onclick="num(this)"><br/>
+    <input type="button" value="1" onclick="num(this)">
+    <input type="button" value="2" onclick="num(this)">
+    <input type="button" value="3" onclick="num(this)">
+    <input type="button" value="+" onclick="num(this)"><br/>
+    <input type="button" value="4" onclick="num(this)">
+    <input type="button" value="5" onclick="num(this)">
+    <input type="button" value="6" onclick="num(this)">
+    <input type="button" value="-" onclick="num(this)"><br/>
+    <input type="button" value="7" onclick="num(this)">
+    <input type="button" value="8" onclick="num(this)">
+    <input type="button" value="9" onclick="num(this)">
+    <input type="button" value="*" onclick="num(this)"><br/>
+    <input style="width: 105px" type="button" value="0" onclick="num(this)">
+    <input type="button" value="." onclick="num(this)">
+    <input type="button" value="=" onclick="num(this)">
+
+</div>
+<!--    <div class="da">
+        <input type="text" id="inp" readonly="readonly">
+        <input type="button" value="1" onclick="num(this)">
+        <input type="button" value="2" onclick="num(this)">
+        <input type="button" value="3" onclick="num(this)">
+        <input type="button" value="+" onclick="num(this)">
+        <input type="button" value="4" onclick="num(this)">
+        <input type="button" value="5" onclick="num(this)">
+        <input type="button" value="6" onclick="num(this)">
+        <input type="button" value="-" onclick="num(this)">
+        <input type="button" value="7" onclick="num(this)">
+        <input type="button" value="8" onclick="num(this)">
+        <input type="button" value="9" onclick="num(this)">
+        <input type="button" value="*" onclick="num(this)">
+        <input type="button" value="/" onclick="num(this)">
+        <input type="button" value="0" onclick="num(this)">
+        <input type="button" value="C" onclick="num(this)">
+        <input type="button" value="=" onclick="num(this)">
+    </div>-->
+<script>
+    function num(btn) {
+        var num=btn.value;
+        var inp=document.getElementById('inp');
+       switch(num){
+           case "=":
+               if(inp.value)
+               inp.value= eval(inp.value);
+               else inp.value='';
+               break;
+           case "C":
+               inp.value='';
+               break;
+           default:
+               inp.value=inp.value+num;
+               break;
+       }
+    }
+    function chexiao() {
+        var inp=document.getElementById('inp');
+        inp.value=inp.value.substr(0,inp.value.length-1)
+    }
+</script>
+</body>
+</html>

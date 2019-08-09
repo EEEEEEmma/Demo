@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单</title>
+    <style>
+        .clear{
+            clear: both;
+        }
+        .content{
+            width:800px;
+            margin:auto;
+            border: 2px solid #5bc0de;
+        }
+        .left_text{
+            width:300px;
+            height:300px;
+            float:left;
+            background: #2e6da4;
+            color:white;
+            margin:10px;
+        }
+        .right_text{
+            width:300px;
+            height:300px;
+            float:right;
+            background: #8a6d3b;
+            color:white;
+            margin:10px;
+
+        }
+        .center_btn{
+            width:70px;
+            height:30px;
+            border:1px solid #999999;
+            background: #999999;
+            color:white;
+            float:left;
+            border-radius: 5px;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<!--切换背景颜色-->
+<!--<form  method="post" >
+        <input type="button" value="变换背景颜色"  onclick="changeColor()">
+</form>-->
+<div class="content" >
+    <div class="left_text" >
+        <input type="text" id="txt1" style="background: transparent;border:none">
+    </div>
+    <input class="center_btn" type="button" onclick="turn()" value="点击文字传输">
+    <div class="right_text">
+        <input type="text" id="txt2" style="background: transparent ;border:none">
+    </div>
+    <div class="clear"></div>
+</div>
+<script>
+/*    var a= new Array('red','blue','white','orange','green');
+    var n=0;
+        function changeColor() {
+            if( n ==(a.length-1))n=0;
+            n++;
+            document.body.style.backgroundColor=a[n];
+        }*/
+    function turn() {
+            var txt1=document.getElementById('txt1');
+            var txt2=document.getElementById('txt2');
+            if(txt1.value == null){
+                alert('请在左边框中输入文本信息~');
+            }
+    }
+
+</script>
+</body>
+</html>

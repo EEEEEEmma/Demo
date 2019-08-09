@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>音乐播放器</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <style>
+        body{
+            background: #c1e2b3;
+        }
+        .demo{text-align: center;
+            margin-top: 100px;}
+        @-webkit-keyframes rotation{
+            from {-webkit-transform: rotate(0deg);}
+            to {-webkit-transform: rotate(360deg);}
+        }
+        .an{
+            -webkit-transform: rotate(360deg);
+            animation: rotation 3s linear infinite;
+            -moz-animation: rotation 3s linear infinite;
+            -webkit-animation: rotation 3s linear infinite;
+            -o-animation: rotation 3s linear infinite;
+        }
+        .img{
+            border-radius: 250px;
+            opacity: 0.4;
+            position: absolute;
+            left:400px;
+        }
+        .img:hover{
+            opacity: 0.8;
+            left:500px;
+        }
+        .zj{
+            z-index: 1;
+            position: absolute;
+            top:90px;
+            left:330px;
+        }
+        .list{
+            position: absolute;
+            top:100px;
+        }
+        .list li{
+            list-style: none;
+            opacity: 0.5;
+        }
+        .list li:hover{
+            opacity: 1;
+        }
+        .mv{
+           position: absolute;
+            top:30px;
+            left:850px;
+            opacity: 1;
+            display: none;
+            z-index: 1;
+            outline: none;
+        }
+        #music{
+            position: absolute;
+            top:400px;
+            right:100px;
+            width: 500px;
+            height: 100px;
+            z-index: 1;
+            outline: none;
+        }
+
+    </style>
+</head>
+<body>
+<div class="demo">
+    <img class="an img" src="image/cd.png" width="350" height="350"  onclick="music()"/>
+    <img class="zj" id="zj" src="image/zhuiguangzhe.jpg" width="370" height="400" onclick="mv()">
+</div>
+<div class="list">
+    <ul>
+        <li><img src="image/zhuiguangzhe.jpg" width="100" height="100" onmouseover='huan(this)'> </li>
+        <li><img src="image/qifengle.jpg" width="100" height="120" onmouseover='huan(this)'> </li>
+        <li><img src="image/dayu.jpg" width="100" height="100" onmouseover="huan(this)"> </li>
+        <li></li>
+    </ul>
+</div>
+<div class="mv" id="mv">
+    <video src="video/zhuiguangzhe.mp4" controls="controls" width="370" height="300"></video>
+</div>
+<audio id="music" src="audio/zhuiguangzhe.mp3" controls="controls" loop="loop"></audio>
+<div class="lrc" id="lyricContainer" >
+</div>
+<script>
+    function huan(img){
+        var zj=document.getElementById('zj');
+        zj.src=img.src;
+    }
+    function mv() {
+        document.getElementById('mv').style.display='block';
+    }
+    var flag;
+    function music() {
+        if(!flag){
+            document.getElementById('music').play();
+            flag=1;
+        }
+        else{
+            document.getElementById('music').pause();
+            flag=0;
+        }
+    }
+    function getLyric(url) {
+        //建立一个XMLHttpRequest请求
+        var request = new XMLHttpRequest();
+        //配置, url为歌词地址，比如：'./content/songs/foo.lrc'
+        request.open('GET', url, true);
+        //因为我们需要的歌词是纯文本形式的，所以设置返回类型为文本
+        request.responseType = 'text';
+        //一旦请求成功，但得到了想要的歌词了
+        request.onload = function() {
+            //这里获得歌词文件
+            var lyric = request.response;
+        };
+        //向服务器发送请求
+        request.send();}
+    function parseLyric(text) {
+        //将文本分隔成一行一行，存入数组
+        var lines = text.split('\n'),
+            //用于匹配时间的正则表达式，匹配的结果类似[xx:xx.xx]
+            pattern = /\[\d{2}:\d{2}.\d{2}\]/g,
+            //保存最终结果的数组
+            result = [];
+        //去掉不含时间的行
+        while (!pattern.test(lines[0])) {
+            lines = lines.slice(1);
+        };
+        //上面用'\n'生成生成数组时，结果中最后一个为空元素，这里将去掉
+        lines[lines.length - 1].length === 0 && lines.pop();
+        lines.forEach(function(v /*数组元素值*/ , i /*元素索引*/ , a /*数组本身*/ ) {
+            //提取出时间[xx:xx.xx]
+            var time = v.match(pattern),
+                //提取歌词
+                value = v.replace(pattern, '');
+            //因为一行里面可能有多个时间，所以time有可能是[xx:xx.xx][xx:xx.xx][xx:xx.xx]的形式，需要进一步分隔
+            time.forEach(function(v1, i1, a1) {
+                //去掉时间里的中括号得到xx:xx.xx
+                var t = v1.slice(1, -1).split(':');
+                //将结果压入最终数组
+                result.push([parseInt(t[0], 10) * 60 + parseFloat(t[1]), value]);
+            });
+        });
+        //最后将结果数组中的元素按时间大小排序，以便保存之后正常显示歌词
+        result.sort(function(a, b) {
+            return a[0] - b[0];
+        });
+        return result;}
+    //获取页面上的audio标签
+        var audio = document.getElementsByTagName('audio'),
+    //显示歌词的元素
+    lyricContainer = document.getElementById('lyricContainer');//监听ontimeupdate事件
+     audio.ontimeupdate = function(e) {
+    //遍历所有歌词，看哪句歌词的时间与当然时间吻合
+    for (var i = 0, l = lyric.length; i < l; i++) {
+        if (this.currentTime /*当前播放的时间*/ > lyric[i][0]) {
+            //显示到页面
+            lyricContainer.textContent = that.lyric[i][1];
+        };
+    };};
+</script>
+
+</body>
+</html>
